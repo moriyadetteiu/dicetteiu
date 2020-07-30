@@ -2,9 +2,13 @@ import re
 import random
 import discord
 from . import AbstractProcessor
+from Container import EnableChannelContainer
 
 class DiceRollProcessor(AbstractProcessor.AbstractProcessor):
     async def process(self, message: discord.Message):
+        if not self.is_enable(message):
+            return
+
         content = message.content
         parsed_content = self.parse(content)
 
@@ -22,3 +26,8 @@ class DiceRollProcessor(AbstractProcessor.AbstractProcessor):
             'number_of_dice': int(result.group(1)),
             'maximum_number': int(result.group(2))
         }
+
+    def is_enable(self, message: discord.Message):
+        channel_id = int(message.channel.id)
+        container = EnableChannelContainer.EnableChannelContainer()
+        return container.is_enable_channel(channel_id)
