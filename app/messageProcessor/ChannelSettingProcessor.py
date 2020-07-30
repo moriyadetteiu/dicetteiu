@@ -24,10 +24,10 @@ class ChannelSettingProcessor(AbstractProcessor.AbstractProcessor):
             responce_message = f'{channel.name}({channel.id})でのダイスボットを{is_enable_message}化しました。'
             await message.channel.send(responce_message)
         except:
-            channels = [
-                f'{channel.id}: {channel.name}'
-                for channel in message.guild.text_channels
-            ]
+            channels = []
+            for channel in message.guild.text_channels:
+                channels.append(f'{channel.id}: {channel.name}')
+            return
             responce_message = '\n'.join(channels)
             await message.channel.send(f'存在するチャンネルを指定してください。\n{responce_message}')
 
