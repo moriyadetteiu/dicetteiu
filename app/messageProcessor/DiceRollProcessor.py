@@ -51,7 +51,7 @@ class DiceRollProcessor(AbstractProcessor.AbstractProcessor):
         await message.channel.send(responce_message)
 
     def parse(self, content):
-        result = re.match(r'^([0-9]+)d([0-9]+) *([+-/*/]*) *([0-9]*) *([><=])* *([0-9]*)', content)
+        result = re.match(r'^([0-9]+)d([0-9]+) *([+-/*/]*) *([0-9]*) *([><=]*) *([0-9]*)', content)
         return {
             'number_of_dice': int(result.group(1)),
             'maximum_number': int(result.group(2)),
