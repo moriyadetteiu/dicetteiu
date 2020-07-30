@@ -7,7 +7,7 @@ from Container import EnableChannelContainer
 
 class DiceRollProcessor(AbstractProcessor.AbstractProcessor):
     async def process(self, message: discord.Message):
-        if not self.is_enable(message) and False:
+        if not self.is_enable(message):
             return
 
         content = message.content
