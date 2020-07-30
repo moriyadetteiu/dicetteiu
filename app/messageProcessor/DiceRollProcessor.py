@@ -16,7 +16,8 @@ class DiceRollProcessor(AbstractProcessor.AbstractProcessor):
         results = []
         compare_results = []
         for i in range(parsed_content['number_of_dice']):
-            result = random.randint(1, parsed_content['maximum_number'])
+            maximum_number = parsed_content['maximum_number']
+            result = random.randint(1, maximum_number)
             modify_operator = parsed_content['result_modify_operator']
             modify_number = parsed_content['result_modify_number']
             modified_result = self.modify_roll_result(
@@ -31,6 +32,7 @@ class DiceRollProcessor(AbstractProcessor.AbstractProcessor):
             )
             results.append(modified_result_text)
             compare_result = self.compare_result(
+                maximum_number,
                 modified_result,
                 parsed_content['compare_method'],
                 parsed_content['compare_number']
@@ -72,7 +74,7 @@ class DiceRollProcessor(AbstractProcessor.AbstractProcessor):
         if operator == '/':
             return result / number
 
-    def compare_result(self, result: int, method: str, number: str) -> str:
+    def compare_result(self, maximum_number: int, result: int, method: str, number: str) -> str:
         if method == '' or number == '':
             return ''
         succeed = None
@@ -87,7 +89,19 @@ class DiceRollProcessor(AbstractProcessor.AbstractProcessor):
             succeed = result <= number
         if succeed == None:
             return ''
-        return '成功' if succeed else '失敗'
+        return (
+            (
+                'クリティカル'
+                if maximum_number == 100 and result <= 5
+                else '成功'
+            )
+            if succeed
+            else (
+                'ファンブル'
+                if maximum_number == 100 and result >= 95
+                else '失敗'
+            )
+        )
 
     def is_enable(self, message: discord.Message):
         channel_id = int(message.channel.id)
