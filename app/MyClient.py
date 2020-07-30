@@ -9,6 +9,3 @@ class MyClient(discord.Client):
         processor = generate(message)
         await processor.process(message)
         return
-
-        for channel in message.guild.text_channels:
-            await message.channel.send(channel.name)
