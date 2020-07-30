@@ -3,5 +3,5 @@ import discord
 
 class AbstractProcessor(metaclass=ABCMeta):
     @abstractmethod
-    def process(self, message: discord.Message):
+    async def process(self, message: discord.Message):
         pass
