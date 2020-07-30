@@ -7,7 +7,7 @@ class MyClient(discord.Client):
             return
 
         processor = generate(message)
-        processor.process(message)
+        await processor.process(message)
         return
 
         for channel in message.guild.text_channels:
