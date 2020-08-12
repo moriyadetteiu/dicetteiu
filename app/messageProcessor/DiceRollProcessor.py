@@ -4,6 +4,7 @@ import random
 import discord
 from . import AbstractProcessor
 from Container import EnableChannelContainer
+from Domain.ValueObject.Dice import Dice
 
 class DiceRollProcessor(AbstractProcessor.AbstractProcessor):
     async def process(self, message: discord.Message):
@@ -17,7 +18,8 @@ class DiceRollProcessor(AbstractProcessor.AbstractProcessor):
         compare_results = []
         for i in range(parsed_content['number_of_dice']):
             maximum_number = parsed_content['maximum_number']
-            result = random.randint(1, maximum_number)
+            dice = Dice(maximum_number)
+            result = dice.roll()
             modify_operator = parsed_content['result_modify_operator']
             modify_number = parsed_content['result_modify_number']
             modified_result = self.modify_roll_result(
