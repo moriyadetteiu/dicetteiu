@@ -2,6 +2,12 @@ import os
 import sys
 import MyClient
 
+from Domain.ValueObject.Dice import Dice
+dice = Dice(1)
+print("1")
+sys.exit()
+print("2")
+
 try:
     token = os.environ['DICE_BOT_TOKEN']
 except KeyError:
