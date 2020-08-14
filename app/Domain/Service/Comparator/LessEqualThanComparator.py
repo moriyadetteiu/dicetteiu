@@ -1,8 +1,7 @@
-from abc import *
 from Domain.Entity.OwnedAbility import OwnedAbility
 from Domain.ValueObject.RollGettableInterface import RollGettableInterface
+from .AbstractComparator import AbstractComparator
 
-class AbstractComparator(metaclass=ABCMeta):
-    @abstractmethod
+class LessEqualThanComparator(AbstractComparator):
     def compare(self, dice: RollGettableInterface, ownedAbility: OwnedAbility) -> bool:
-        pass
+        return dice.get_result() <= ownedAbility.get_level()

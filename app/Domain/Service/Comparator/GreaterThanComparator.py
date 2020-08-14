@@ -3,5 +3,5 @@ from Domain.ValueObject.RollGettableInterface import RollGettableInterface
 from .AbstractComparator import AbstractComparator
 
 class GreaterThanComparator(AbstractComparator):
-    def compare(self, dice: RollGettableInterface, ownedAbility: OwnedAbility):
-        return dice.get_result() >= ownedAbility.get_level()
+    def compare(self, dice: RollGettableInterface, ownedAbility: OwnedAbility) -> bool:
+        return dice.get_result() > ownedAbility.get_level()
