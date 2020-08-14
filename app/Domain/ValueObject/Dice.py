@@ -1,7 +1,8 @@
 import random
 from Domain.Exceptions.InvalidArgumentException import InvalidArgumentException
+from .RollGettableInterface import RollGettableInterface
 
-class Dice:
+class Dice(RollGettableInterface):
     def __init__(self, side: int):
         if side <= 0:
             raise InvalidArgumentException('ダイスは1面以上必要です')
@@ -13,7 +14,7 @@ class Dice:
         self.__roll_result = random.randint(1, self.__side)
         return self.__roll_result
 
-    def get_result(self):
+    def get_result(self) -> int:
         if self.__roll_result == None:
             raise RuntimeError('ダイスロールがされていません')
 
