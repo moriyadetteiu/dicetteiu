@@ -10,8 +10,8 @@ class OwnedAbility:
         self.__ability = ability
         self.__level = level
 
-    def get_ability(self):
+    def get_ability(self) -> str:
         return self.__ability
 
-    def get_level(self):
+    def get_level(self) -> int:
         return self.__level

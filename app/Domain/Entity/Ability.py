@@ -7,5 +7,5 @@ class Ability():
 
         self.__name = name
 
-    def get_name(self):
+    def get_name(self) -> str:
         return self.__name
