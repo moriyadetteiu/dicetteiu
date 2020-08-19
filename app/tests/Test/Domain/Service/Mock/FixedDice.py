@@ -1,6 +1,6 @@
-from Domain.ValueObject.RollGettableInterface import RollGettableInterface
+from Domain.ValueObject.EffectiveValueGettableInterface import EffectiveValueGettableInterface
 
-class FixedDice(RollGettableInterface):
+class FixedDice(EffectiveValueGettableInterface):
     def __init__(self, fixedResult: int):
         self.result = fixedResult
 

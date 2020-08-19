@@ -2,6 +2,6 @@ from Domain.Entity.TargetLevelGettableInterface import TargetLevelGettableInterf
 from Domain.ValueObject.EffectiveValueGettableInterface import EffectiveValueGettableInterface
 from .AbstractComparator import AbstractComparator
 
-class GreaterEqualThanComparator(AbstractComparator):
+class NullComparator(AbstractComparator):
     def compare(self, dice: EffectiveValueGettableInterface, ownedAbility: TargetLevelGettableInterface) -> bool:
-        return dice.get_result() >= ownedAbility.get_level()
+        return false

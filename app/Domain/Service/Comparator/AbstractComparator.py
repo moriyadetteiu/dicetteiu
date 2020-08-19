@@ -1,8 +1,8 @@
 from abc import *
-from Domain.Entity.OwnedAbility import OwnedAbility
-from Domain.ValueObject.RollGettableInterface import RollGettableInterface
+from Domain.Entity.TargetLevelGettableInterface import TargetLevelGettableInterface
+from Domain.ValueObject.EffectiveValueGettableInterface import EffectiveValueGettableInterface
 
 class AbstractComparator(metaclass=ABCMeta):
     @abstractmethod
-    def compare(self, dice: RollGettableInterface, ownedAbility: OwnedAbility) -> bool:
+    def compare(self, dice: EffectiveValueGettableInterface, ownedAbility: TargetLevelGettableInterface) -> bool:
         pass

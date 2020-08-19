@@ -44,6 +44,21 @@ class TestJudgementService(TestCase):
         result = comparator.compare(fixedDice, ownedAbility)
         self.assertFalse(result)
 
+    def test_judge(self):
+        self.assert_judge_result(50, 5, 'クリティカル')
+        self.assert_judge_result(3, 4, '失敗')
+        self.assert_judge_result(50, 6, '成功')
+        self.assert_judge_result(50, 95, '失敗')
+        self.assert_judge_result(50, 96, 'ファンブル')
+        self.assert_judge_result(98, 98, '成功')
+
+    def assert_judge_result(self, level: int, FixedDiceNumber: int, expected: str, method: str = '<='):
+        fixedDice = FixedDice(FixedDiceNumber)
+        ownedAbility = self.make_owned_ability(level)
+        service = JudgementService()
+        result = service.judge(fixedDice, ownedAbility, method)
+        self.assertEqual(result, expected)
+
     def make_owned_ability(self, level: int, name: str = 'test'):
         ability = Ability(name)
         return OwnedAbility(ability, level)

@@ -1,8 +1,8 @@
 import random
 from Domain.Exceptions.InvalidArgumentException import InvalidArgumentException
-from .RollGettableInterface import RollGettableInterface
+from .EffectiveValueGettableInterface import EffectiveValueGettableInterface
 
-class Dice(RollGettableInterface):
+class Dice(EffectiveValueGettableInterface):
     def __init__(self, side: int):
         if side <= 0:
             raise InvalidArgumentException('ダイスは1面以上必要です')
